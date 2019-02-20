@@ -15,6 +15,25 @@ const getMoodEvents = () => {
     });
 };
 
+const insertMoodEvent = (newMoodData) => { 
+    return new Promise((resolve, reject) => {
+        const newMoodEvent = {
+            ...newMoodData,
+            id: helper.newId(),
+            createdAt: helper.newDate()
+        };
+
+        moodEvents.push(newMoodEvent);
+
+        helper.writeJSON(filename, moodEvents).then(() => {
+            resolve();
+        }, () => {
+            reject();
+        });
+    });
+};
+
 module.exports = {
-    getMoodEvents
+    getMoodEvents,
+    insertMoodEvent
 };
