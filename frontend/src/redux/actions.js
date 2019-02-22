@@ -1,9 +1,9 @@
+import uuid from 'uuid';
 import API from '../api';
+import { showSnack } from 'react-redux-snackbar';
 import { 
-    SAVE_MOOD, 
     SAVE_MOOD_SUCCESS, 
     SAVE_MOOD_ERROR,
-    GET_MOODS,
     GET_MOODS_SUCCESS,
     GET_MOODS_ERROR
 } from './actionTypes';
@@ -29,9 +29,18 @@ export const saveMood = (mood) => {
         return API.post(moodRoute, mood)
             .then(json => {
                 dispatch(saveMoodSuccess(json.data.content));
+                dispatch(showSnack(uuid(), {
+                    label: 'Check-In Saved',
+                    timeout: 2500
+                }));
             })
             .catch((error) => {
                 dispatch(saveMoodError(error));
+                dispatch(showSnack(uuid(), {
+                    label: error.response.data.message,
+                    timeout: 7000,
+                    button: { label: 'OK' }
+                }));
             });
     }
 };
