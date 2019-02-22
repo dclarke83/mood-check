@@ -1,0 +1,7 @@
+.mood-slider {
+    display: block;
+    width: 100%;
+    .rangeslider__fill {
+        background-image: linear-gradient(to right, red, blue);
+    }
+}
