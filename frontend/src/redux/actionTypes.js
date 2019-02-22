@@ -1,0 +1,7 @@
+export const SAVE_MOOD = 'SAVE_MOOD';
+export const SAVE_MOOD_SUCCESS = 'SAVE_MOOD_SUCCESS';
+export const SAVE_MOOD_ERROR = 'SAVE_MOOD_ERROR';
+
+export const GET_MOODS = 'GET_MOODS';
+export const GET_MOODS_SUCCESS = 'GET_MOODS_SUCCESS';
+export const GET_MOODS_ERROR = 'GET_MOODS_ERROR';

@@ -6,6 +6,9 @@ import 'react-rangeslider/lib/index.css'
 import './mood-slider.scss';
 import MoodFace from './MoodFace';
 
+import { connect } from 'react-redux';
+import { saveMood } from './redux/actions';
+
 const PageTitle = styled.div`
     font-size: 30px;
     font-weight: 500;
@@ -55,6 +58,20 @@ class CheckInPage extends Component {
     }
 
     handleSubmit = () => {
+        const moodData = {
+            mood: this.state.mood,
+            feelings: Object.keys(this.state.feelings).reduce((arr, val) => {
+                if(this.state.feelings[val]){
+                    arr = arr.concat([val]);
+                }
+                return arr;
+            }, []),
+            comment: this.state.comment
+        }
+
+        console.log(moodData);
+
+        this.props.dispatch(saveMood(moodData));
         console.log('Raise save action');
     }
 
@@ -102,4 +119,4 @@ class CheckInPage extends Component {
     }
 }
 
-export default CheckInPage;
+export default connect()(CheckInPage);

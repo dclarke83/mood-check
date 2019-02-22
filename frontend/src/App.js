@@ -1,4 +1,3 @@
-import 'typeface-roboto';
 import React, { Component } from 'react';
 import CheckInPage from './CheckInPage';
 
