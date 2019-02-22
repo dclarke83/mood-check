@@ -12,7 +12,7 @@ const newId = () => {
 const writeJSON = (filename, content) => {
     return new Promise((resolve, reject) => {
         const data = JSON.stringify(content)
-        fs.writeFileSync(filename, data, 'utf8', (err) => {
+        fs.writeFile(filename, data, 'utf8', (err) => {
             if (err) {
                 reject(err);
             }

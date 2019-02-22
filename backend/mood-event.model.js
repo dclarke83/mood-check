@@ -26,7 +26,7 @@ const insertMoodEvent = (newMoodData) => {
         moodEvents.push(newMoodEvent);
 
         helper.writeJSON(filename, moodEvents).then(() => {
-            resolve();
+            resolve(newMoodEvent);
         }, () => {
             reject();
         });
@@ -39,15 +39,18 @@ const validateMoodEvent = (req, res, next) => {
     // comment should be a string (optional)
 
     const { mood, feelings, comment } = req.body;
+    let errors = [];
+    let valid = true;
 
-    if(
-        (Number.isInteger(mood) && mood >= 1 && mood <= 7)
-        && (Array.isArray(feelings) && feelings.length > 0)
-        && typeof comment === 'string'
-    ) {
+    if(!Number.isInteger) { errors.push('Mood must be a whole number'); valid = false; }
+    if(!(mood >=1 && mood <= 7)) { errors.push('Mood must be between 1 and 7'); valid = false; }
+    if(!(Array.isArray(feelings) && feelings.length > 0)) { errors.push('One or more feelings must be supplied'); valid = false; }
+    if(typeof comment !== 'string') { errors.push('The comment should be a string'); valid = false; }
+
+    if(valid) {
         next();
     } else {
-        res.status(400).json({ message: 'Invalid post data' });
+        res.status(400).json({ message: errors.join('<br />') });
     }
 }
 
