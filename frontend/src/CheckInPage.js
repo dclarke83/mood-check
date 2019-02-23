@@ -78,7 +78,6 @@ class CheckInPage extends Component {
     render() {
         return (
             <div>
-                <PageTitle>Mood</PageTitle>
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <MoodFace mood={this.state.mood} />
                     <div style={{ width: '80%', marginBottom: '50px' }}>
