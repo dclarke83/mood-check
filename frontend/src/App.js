@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Snackbar } from 'react-redux-snackbar';
 import NavBar from './NavBar';
 import CheckInPage from './CheckInPage';
@@ -13,8 +13,11 @@ class App extends Component {
           <div>
             <NavBar />
             <div style={{ marginTop: '64px' }}>
-              <Route exact path='/checkin' render={() => <CheckInPage /> } />
-              <Route exact path='/insights' render={() => <InsightsPage /> } />
+              <Switch>
+                <Route exact path='/checkin' render={() => <CheckInPage /> } />
+                <Route exact path='/insights' render={() => <InsightsPage /> } />
+                <Route render={() => <Redirect to='/checkin' /> } />
+              </Switch>
             </div>
           </div>
         </Router>
