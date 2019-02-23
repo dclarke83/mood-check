@@ -44,3 +44,34 @@ export const saveMood = (mood) => {
             });
     }
 };
+
+export const getMoodSuccess = (moods) => ({
+    type: GET_MOODS_SUCCESS,
+    payload: {
+        moods: moods
+    }
+});
+
+export const getMoodsError = (error) => ({
+    type: GET_MOODS_ERROR,
+    payload: {
+        error: error
+    }
+});
+
+export const getMoods = () => {
+    return (dispatch) => {
+        return API.get(moodRoute)
+            .then(json => {
+                dispatch(getMoodSuccess(json.data));
+            })
+            .catch((error) => {
+                dispatch(getMoodsError(error))
+                dispatch(showSnack(uuid(), {
+                    label: error.response.data.message,
+                    timeout: 7000,
+                    button: { label: 'OK' }
+                }));                
+            })
+    }
+};

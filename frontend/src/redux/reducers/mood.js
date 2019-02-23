@@ -19,6 +19,12 @@ export default function(state = initialState, action) {
                 moodHistory: state.moodHistory.concat([action.payload.mood])
             };
         }
+        case GET_MOODS_SUCCESS: {
+            return {
+                ...state,
+                moodHistory: action.payload.moods
+            }
+        }
         default: {
             return state;
         }
