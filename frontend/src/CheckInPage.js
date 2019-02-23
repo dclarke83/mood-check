@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
 import './mood-slider.scss';
+
 import MoodFace from './MoodFace';
+import CheckButton from './CheckButton';
 
 import { connect } from 'react-redux';
 import { saveMood } from './redux/actions';
@@ -45,16 +47,17 @@ class CheckInPage extends Component {
         });
     }
 
-    handleFeelingChange = (e) => {
-        const feelingName = e.target.name;
-        const feelingValue = e.target.checked;
-
+    handleFeelingChange = (name, value) => {
         this.setState(prevState => ({
             feelings: { 
                 ...prevState.feelings,
-                [feelingName]: feelingValue
+                [name]: value
             }
         }));
+    }
+
+    handleFeelingChange2 = (name, value) => {
+        console.log(name, value);
     }
 
     handleSubmit = () => {
@@ -102,10 +105,9 @@ class CheckInPage extends Component {
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: '30px' }}>
                         {
                             Object.keys(this.state.feelings).map(feeling => (
-                                <label key={feeling}>
+                                <CheckButton key={feeling} name={feeling} handleChecked={this.handleFeelingChange}>
                                     {feeling}
-                                    <input type='checkbox' checked={this.state.feelings[feeling]} name={feeling} onChange={this.handleFeelingChange} />
-                                </label>
+                                </CheckButton>
                             ))
                         }
                     </div>
