@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
     FaRegTired,
     FaRegAngry,
@@ -9,25 +10,32 @@ import {
     FaRegGrinSquint
 } from 'react-icons/fa';
 
+const Container = styled.div`
+    margin: ${props => (props.style && props.style.margin) ? props.style.margin : '30px' };
+    display: flex;
+    justify-content: center;
+`
+
 const MoodFace = (props) => {
-    const style = {
+    const iconStyle = {
         fontSize: '10em',
-        color: '#cacaca'
+        color: '#cacaca',
+        ...props.style
     };
     const faces = [
-        { key: 1, value: <FaRegTired style={style} /> },
-        { key: 2, value: <FaRegAngry style={style} /> },
-        { key: 3, value: <FaRegFrown style={style} /> },
-        { key: 4, value: <FaRegMeh style={style} /> },
-        { key: 5, value: <FaRegSmile style={style} /> },
-        { key: 6, value: <FaRegSmileBeam style={style} /> },
-        { key: 7, value: <FaRegGrinSquint style={style} /> }
+        { key: 1, value: <FaRegTired style={iconStyle} /> },
+        { key: 2, value: <FaRegAngry style={iconStyle} /> },
+        { key: 3, value: <FaRegFrown style={iconStyle} /> },
+        { key: 4, value: <FaRegMeh style={iconStyle} /> },
+        { key: 5, value: <FaRegSmile style={iconStyle} /> },
+        { key: 6, value: <FaRegSmileBeam style={iconStyle} /> },
+        { key: 7, value: <FaRegGrinSquint style={iconStyle} /> }
     ];
 
     return (
-        <div style={{ margin: '30px', display: 'flex', justifyContent: 'center' }}>
+        <Container style={props.style}>
             { faces.find(face => face.key === props.mood).value }
-        </div>
+        </Container>
     );
 }
 
