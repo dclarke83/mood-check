@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMoods } from './redux/actions';
+import { getOrderedMoodHistory } from './redux/selectors';
+import MoodEntry from './MoodEntry';
 
 class InsightsPage extends Component {
 
@@ -10,9 +12,21 @@ class InsightsPage extends Component {
 
     render() {
         return (
-            <div></div>
+            <div>
+                <div>
+                    <ol>
+                    {this.props.orderedHistory.map(history => (
+                        <MoodEntry key={history.id} {...history}/>
+                    ))}
+                    </ol>
+                </div>
+            </div>
         );
     }
 }
 
-export default connect()(InsightsPage);
+const mapStateToProps = (state) => {
+    return getOrderedMoodHistory(state);
+}
+
+export default connect(mapStateToProps)(InsightsPage);
