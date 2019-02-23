@@ -11,6 +11,7 @@ const ButtonLabel = styled.label`
     border-radius: 4px;
     text-align: center;
     min-width: 64px;
+    width: 100%;
     vertical-align: middle;
     padding: 6px 16px;
     cursor: pointer;
@@ -43,7 +44,7 @@ class CheckButton extends Component {
 
     render() {
         return (
-            <div style={{ display: 'inline-flex', margin: '3px' }}>
+            <div style={{ display: 'flex', flexGrow: 1, margin: '3px' }}>
                 <CheckBox 
                     name={this.props.name} 
                     id={this.props.name}

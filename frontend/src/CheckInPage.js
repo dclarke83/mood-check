@@ -11,12 +11,35 @@ import CheckButton from './CheckButton';
 import { connect } from 'react-redux';
 import { saveMood } from './redux/actions';
 
-const PageTitle = styled.div`
-    font-size: 30px;
+const RoundButton = styled.button`
+    background-color: #ff8a66;
+    border-radius: 20px;
+    border: 0;
+    color: #fff;
+
+    text-align: center;
+    min-width: 50%;
+    min-height: 40px;
+
+    text-transform: uppercase;
+    line-height: 1.75;
+    font-size: 0.975em;
     font-weight: 500;
-    font-family: 'Roboto';
+    letter-spacing: 0.06em;
+    outline: none; 
+
+    transition: all .3s;
+    
+    &:hover {
+        background-color: orange;
+    }
+`;
+
+const Comment = styled.input`
+    border: 0;
     border-bottom: 1px solid #000;
-    margin-bottom: 5px;
+    outline: none;
+    width: 85%;
 `
 
 class CheckInPage extends Component {
@@ -56,10 +79,6 @@ class CheckInPage extends Component {
         }));
     }
 
-    handleFeelingChange2 = (name, value) => {
-        console.log(name, value);
-    }
-
     handleSubmit = () => {
         const moodData = {
             mood: this.state.mood,
@@ -72,10 +91,7 @@ class CheckInPage extends Component {
             comment: this.state.comment
         }
 
-        console.log(moodData);
-
         this.props.dispatch(saveMood(moodData));
-        console.log('Raise save action');
     }
 
     render() {
@@ -96,23 +112,33 @@ class CheckInPage extends Component {
                             onChange={this.handleSlideChange}
                         />
                     </div>
-                    <div style={{ width: '100%', margin: '30px' }}>
-                        <label>
-                            Comment
-                            <input type='text' value={this.state.comment} placeholder='' onChange={this.handleCommentChange}/>
-                        </label>
+                    <div style={{ width: '100%', margin: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Comment type='text' value={this.state.comment} placeholder='Enter your notes (optional)' onChange={this.handleCommentChange}/>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: '30px' }}>
-                        {
-                            Object.keys(this.state.feelings).map(feeling => (
-                                <CheckButton key={feeling} name={feeling} handleChecked={this.handleFeelingChange}>
-                                    {feeling}
-                                </CheckButton>
-                            ))
-                        }
+                    <div style={{
+                        width: '100%',
+                        backgroundColor: '#edf0f5'  
+                    }}>
+                        <div style={{
+                            display: 'flex', 
+                            flexWrap: 'wrap', 
+                            flexDirection: 'row', 
+                            flexGrow: 1,
+                            justifyContent: 'space-between', 
+                            alignItems: 'center', 
+                            justifyItems: 'baseline',
+                            margin: '30px' }}>
+                            {
+                                Object.keys(this.state.feelings).map(feeling => (
+                                    <CheckButton key={feeling} name={feeling} handleChecked={this.handleFeelingChange}>
+                                        {feeling}
+                                    </CheckButton>
+                                ))
+                            }
+                        </div>
                     </div>
-                    <div>
-                        <button type='button' onClick={this.handleSubmit}>Save</button>
+                    <div style={{ width: '100%', margin: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <RoundButton type='button' onClick={this.handleSubmit}>Save</RoundButton>
                     </div>
                 </div>
             </div>
