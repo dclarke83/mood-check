@@ -4,4 +4,18 @@
     .rangeslider__fill {
         background-image: linear-gradient(to right, orange, yellow, rgb(9, 241, 9));
     }
+    .rangeslider__handle {
+        border-radius: 0;
+        width: 10px;
+        background-color: #dadada;
+        outline: none;
+        &:after {
+            border-radius: 0;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 30px;
+            box-shadow: none;
+        }
+    }
 }
