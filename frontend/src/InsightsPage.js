@@ -8,6 +8,7 @@ import MoodFace from './MoodFace';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+//#region styled-elements
 const EntryList = styled.ol`
     list-style-type: none;
     margin-block-start: 0;
@@ -15,6 +16,50 @@ const EntryList = styled.ol`
     padding-inline-start: 0;
     padding: 30px;
 `;
+
+const StatsBackground = styled.div`
+    background-color: #f7f7f7;
+    padding: 10px;
+`;
+
+const StatsContainer = styled.div`
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+`;
+
+const GraphContainer = styled.div`
+    position: relative;
+    margin: 30px;
+`;
+
+const MoodOuterPos = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+`;
+
+const MoodInnerPos = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+`;
+
+const NumberContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+`;
+//#endregion
 
 class InsightsPage extends Component {
 
@@ -29,26 +74,30 @@ class InsightsPage extends Component {
     render() {
         return (
             <div>
-                <div style={{backgroundColor: '#f7f7f7', padding: '10px'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', margin: '10px', borderRadius: '10px', backgroundColor: '#fff'}}>
-                        <div style={{position: 'relative', margin: '30px'}}>
-                            <CircularProgressbar percentage={this.calcPercentage()}/>
-                            <div style={{position: 'absolute', top: '0', left: '0', height: '100%', width: '100%'}}>
-                                <div style={{display: 'flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                                <MoodFace perc={this.calcPercentage()} />
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{display:'flex', flexDirection:'column', alignContent:'center', justifyContent: 'center', alignItems: 'center'}}>
-                            <div style={{fontSize: '6em', fontWeight: 500 }}>
-                                {this.calcPercentage()}%
-                            </div>
-                            <div>
-                                Based on {this.props.totals.count} entries
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <StatsBackground>
+                    <StatsContainer>
+                        <GraphContainer>
+                            <CircularProgressbar percentage={this.calcPercentage()} initialAnimation={true} counterClockwise={true} />
+                            <MoodOuterPos>
+                                <MoodInnerPos>
+                                    <MoodFace perc={this.calcPercentage()} />
+                                </MoodInnerPos>
+                            </MoodOuterPos>
+                        </GraphContainer>
+                        <NumberContainer>
+                            {this.props.totals.base &&
+                                <React.Fragment>
+                                    <div style={{fontSize: '6em', fontWeight: 500 }}>
+                                        {this.calcPercentage()}%
+                                    </div>
+                                    <div>
+                                        Based on {this.props.totals.count} entries
+                                    </div>
+                                </React.Fragment>
+                            }
+                        </NumberContainer>
+                    </StatsContainer>
+                </StatsBackground>
                 <div>
                     <EntryList>
                     {this.props.orderedHistory.map(history => (
