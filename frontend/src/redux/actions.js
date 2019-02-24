@@ -5,7 +5,9 @@ import {
     SAVE_MOOD_SUCCESS, 
     SAVE_MOOD_ERROR,
     GET_MOODS_SUCCESS,
-    GET_MOODS_ERROR
+    GET_MOODS_ERROR,
+    GET_MOODS,
+    SAVE_MOOD
 } from './actionTypes';
 
 const moodRoute = 'mood-events';
@@ -24,8 +26,14 @@ export const saveMoodError = (error) => ({
    }
 });
 
+export const saveMoodInProgress = () => ({
+    type: SAVE_MOOD,
+    payload: {}
+});
+
 export const saveMood = (mood) => {
     return (dispatch) => {
+        dispatch(saveMoodInProgress());
         return API.post(moodRoute, mood)
             .then(json => {
                 dispatch(saveMoodSuccess(json.data.content));
@@ -59,8 +67,14 @@ export const getMoodsError = (error) => ({
     }
 });
 
+export const getMoodsLoading = () => ({
+    type: GET_MOODS,
+    payload: {}
+});
+
 export const getMoods = () => {
     return (dispatch) => {
+        dispatch(getMoodsLoading());
         return API.get(moodRoute)
             .then(json => {
                 dispatch(getMoodSuccess(json.data));
@@ -68,7 +82,7 @@ export const getMoods = () => {
             .catch((error) => {
                 dispatch(getMoodsError(error))
                 dispatch(showSnack(uuid(), {
-                    label: error.response.data.message,
+                    label: (error.response) ? error.response.data.message : 'Unable to retrieve insights - ' + error.message,
                     timeout: 7000,
                     button: { label: 'OK' }
                 }));                

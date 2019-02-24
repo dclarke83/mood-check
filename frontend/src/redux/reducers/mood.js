@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     moodHistory: [],
-    moodStatus: null,
+    moodStatus: 'loading',
     saveStatus: null
 };
 
@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 moodHistory: action.payload.moods,
-                moodStatus: 'loaded'
+                moodStatus: 'success'
             }
         }
         case GET_MOODS_ERROR: {

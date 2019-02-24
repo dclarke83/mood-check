@@ -7,6 +7,8 @@ import MoodEntry from './MoodEntry';
 import MoodFace from './MoodFace';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import Spinner from './Spinner';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
 //#region styled-elements
 const EntryList = styled.ol`
@@ -64,6 +66,13 @@ const NumberContainer = styled.div`
     align-items: center;
     padding: 10px;
 `;
+
+const Centralise = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+`;
 //#endregion
 
 class InsightsPage extends Component {
@@ -80,28 +89,45 @@ class InsightsPage extends Component {
         return (
             <div>
                 <StatsBackground>
-                    <StatsContainer>
-                        <GraphContainer>
-                            <CircularProgressbar percentage={this.calcPercentage()} initialAnimation={true} counterClockwise={true} />
-                            <MoodOuterPos>
-                                <MoodInnerPos>
-                                    <MoodFace perc={this.calcPercentage()} />
-                                </MoodInnerPos>
-                            </MoodOuterPos>
-                        </GraphContainer>
-                        <NumberContainer>
-                            {this.props.totals.base &&
-                                <React.Fragment>
-                                    <div style={{fontSize: '6em', fontWeight: 500 }}>
-                                        {this.calcPercentage()}%
-                                    </div>
-                                    <div>
-                                        Based on {this.props.totals.count} entries
-                                    </div>
-                                </React.Fragment>
-                            }
-                        </NumberContainer>
-                    </StatsContainer>
+                    {
+                        this.props.status === 'loading' &&
+                        <Centralise>
+                            <Spinner />
+                            Loading...
+                        </Centralise>
+                    }
+                    {
+                        this.props.status === 'error' && 
+                        <Centralise>
+                            <FaExclamationTriangle style={{fontSize: '26vw', color: '#ff5252' }} />
+                            <p>Unable to retrieve insights</p>
+                        </Centralise>
+                    }
+                    {
+                        this.props.status === 'success' &&
+                        <StatsContainer>
+                            <GraphContainer>
+                                <CircularProgressbar percentage={this.calcPercentage()} initialAnimation={true} counterClockwise={true} />
+                                <MoodOuterPos>
+                                    <MoodInnerPos>
+                                        <MoodFace perc={this.calcPercentage()} />
+                                    </MoodInnerPos>
+                                </MoodOuterPos>
+                            </GraphContainer>
+                            <NumberContainer>
+                                {this.props.totals.base &&
+                                    <React.Fragment>
+                                        <div style={{fontSize: '6em', fontWeight: 500 }}>
+                                            {this.calcPercentage()}%
+                                        </div>
+                                        <div>
+                                            Based on {this.props.totals.count} entries
+                                        </div>
+                                    </React.Fragment>
+                                }
+                            </NumberContainer>
+                        </StatsContainer>
+                    }
                 </StatsBackground>
                 <div>
                     <EntryList>
