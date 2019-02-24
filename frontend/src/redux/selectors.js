@@ -16,8 +16,28 @@ export const getOrderedMoodHistory = createSelector(
                 return (a.createdAt - b.createdAt) * -1;
             });
 
-        return {
-            orderedHistory: orderedHistory
-        };
+        return orderedHistory;
     }
-)
+);
+
+export const getMoodTotals = createSelector(
+    [getMoodHistory],
+    (history) => {
+        return history.reduce((res, cur) => {
+            res.score = (res.score) ? res.score + cur.mood : cur.mood;
+            res.base = (res.base) ? res.base + 7 : 7;
+            res.count = (res.count) ? res.count + 1 : 1;
+            return res;
+        }, {});
+    }
+);
+
+export const getMoodInsights = createSelector(
+    [getOrderedMoodHistory, getMoodTotals],
+    (history, totals) => {
+        return {
+            totals: totals,
+            orderedHistory: history
+        }
+    }
+);
