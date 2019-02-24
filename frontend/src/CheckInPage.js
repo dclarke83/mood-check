@@ -5,30 +5,32 @@ import 'react-rangeslider/lib/index.css'
 import './mood-slider.scss';
 import MoodFace from './MoodFace';
 import CheckButton from './CheckButton';
+import RoundButton from './RoundButton';
 import { connect } from 'react-redux';
 import { saveMood } from './redux/actions';
+import { getSaveStatus } from './redux/selectors';
 
 //#region styled-components
-const RoundButton = styled.button`
-    background-color: #ff8a66;
-    border-radius: 20px;
-    border: 0;
-    color: #fff;
-    text-align: center;
-    min-width: 50%;
-    min-height: 40px;
-    text-transform: uppercase;
-    line-height: 1.75;
-    font-size: 0.975em;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    outline: none; 
-    transition: all .3s;
+// const RoundButton = styled.button`
+//     background-color: #ff8a66;
+//     border-radius: 20px;
+//     border: 0;
+//     color: #fff;
+//     text-align: center;
+//     min-width: 50%;
+//     min-height: 40px;
+//     text-transform: uppercase;
+//     line-height: 1.75;
+//     font-size: 0.975em;
+//     font-weight: 500;
+//     letter-spacing: 0.06em;
+//     outline: none; 
+//     transition: all .3s;
     
-    &:hover {
-        background-color: orange;
-    }
-`;
+//     &:hover {
+//         background-color: orange;
+//     }
+// `;
 
 const Comment = styled.input`
     border: 0;
@@ -164,7 +166,7 @@ class CheckInPage extends Component {
                         </FeelingsContainer>
                     </FeelingsBackground>
                     <GeneralContainer>
-                        <RoundButton type='button' onClick={this.handleSubmit}>Save</RoundButton>
+                        <RoundButton type='button' handleClick={this.handleSubmit} status={this.props.status}>Save</RoundButton>
                     </GeneralContainer>
                 </PageContainer>
             </div>
@@ -172,4 +174,8 @@ class CheckInPage extends Component {
     }
 }
 
-export default connect()(CheckInPage);
+const mapStateToProps = (state) => (
+    getSaveStatus(state)
+);
+
+export default connect(mapStateToProps)(CheckInPage);
