@@ -1,0 +1,4 @@
+{
+    "jest.rootPath": "frontend",
+    "jest.debugMode": true
+}
