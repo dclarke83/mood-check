@@ -37,7 +37,7 @@ export const saveMood = (mood) => {
             .catch((error) => {
                 dispatch(saveMoodError(error));
                 dispatch(showSnack(uuid(), {
-                    label: error.response.data.message,
+                    label: (error.response) ? error.response.data.message : 'Unable to save - ' + error.message,
                     timeout: 7000,
                     button: { label: 'OK' }
                 }));
