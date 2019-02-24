@@ -126,7 +126,7 @@ class MoodEntry extends Component {
                         <FormattedTime date={this.props.createdAt} />
                     </Col>
                     <Col>
-                        <MoodFace style={{fontSize: '1.5em', margin: '0px' }} mood={this.props.mood}/>
+                        <MoodFace style={{fontSize: '1.5em', margin: '0px' }} mood={this.props.mood} />
                     </Col>
                     <ToggleCol>
                         <Toggle type='button' onClick={this.handleExpand}>
