@@ -19,7 +19,7 @@ const Row = styled.div`
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     justify-items: baseline;
 `;
 
@@ -34,6 +34,16 @@ const Col = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 33%;
+`;
+
+const ToggleCol = styled(Col)`
+    justify-content: flex-end;
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-basis: 0;
 `;
 
 const Tags = styled.div`
@@ -118,11 +128,11 @@ class MoodEntry extends Component {
                     <Col>
                         <MoodFace style={{fontSize: '1.5em', margin: '0px' }} mood={this.props.mood}/>
                     </Col>
-                    <Col>
+                    <ToggleCol>
                         <Toggle type='button' onClick={this.handleExpand}>
                             {(this.state.expanded) ? <FaChevronUp/> : <FaChevronDown/>}
                         </Toggle>
-                    </Col>
+                    </ToggleCol>
                 </Row>
                 <ExpanderRow ref={this.expanderRef} expanded={this.state.expanded} >
                     <Tags>
