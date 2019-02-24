@@ -8,21 +8,49 @@ import {
 } from '../actionTypes';
 
 const initialState = {
-    moodHistory: []
+    moodHistory: [],
+    moodStatus: null,
+    saveStatus: null
 };
 
 export default function(state = initialState, action) {
     switch (action.type){
+        case SAVE_MOOD: {
+            return {
+                ...state,
+                saveStatus: 'pending'
+            };
+        }
         case SAVE_MOOD_SUCCESS: {
             return {
                 ...state,
-                moodHistory: state.moodHistory.concat([action.payload.mood])
+                moodHistory: state.moodHistory.concat([action.payload.mood]),
+                saveStatus: 'success'
+            };
+        }
+        case SAVE_MOOD_ERROR: {
+            return {
+                ...state,
+                saveStatus: 'error'
+            };
+        }
+        case GET_MOODS: {
+            return {
+                ...state,
+                moodStatus: 'loading'
             };
         }
         case GET_MOODS_SUCCESS: {
             return {
                 ...state,
-                moodHistory: action.payload.moods
+                moodHistory: action.payload.moods,
+                moodStatus: 'loaded'
+            }
+        }
+        case GET_MOODS_ERROR: {
+            return {
+                ...state,
+                moodStatus: 'error'
             }
         }
         default: {
