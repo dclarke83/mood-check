@@ -11,27 +11,6 @@ import { saveMood } from './redux/actions';
 import { getSaveStatus } from './redux/selectors';
 
 //#region styled-components
-// const RoundButton = styled.button`
-//     background-color: #ff8a66;
-//     border-radius: 20px;
-//     border: 0;
-//     color: #fff;
-//     text-align: center;
-//     min-width: 50%;
-//     min-height: 40px;
-//     text-transform: uppercase;
-//     line-height: 1.75;
-//     font-size: 0.975em;
-//     font-weight: 500;
-//     letter-spacing: 0.06em;
-//     outline: none; 
-//     transition: all .3s;
-    
-//     &:hover {
-//         background-color: orange;
-//     }
-// `;
-
 const Comment = styled.input`
     border: 0;
     border-bottom: 1px solid #000;
