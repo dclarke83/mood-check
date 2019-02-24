@@ -23,18 +23,23 @@ const MoodFace = (props) => {
         ...props.style
     };
     const faces = [
-        { key: 1, value: <FaRegTired style={iconStyle} /> },
-        { key: 2, value: <FaRegAngry style={iconStyle} /> },
-        { key: 3, value: <FaRegFrown style={iconStyle} /> },
-        { key: 4, value: <FaRegMeh style={iconStyle} /> },
-        { key: 5, value: <FaRegSmile style={iconStyle} /> },
-        { key: 6, value: <FaRegSmileBeam style={iconStyle} /> },
-        { key: 7, value: <FaRegGrinSquint style={iconStyle} /> }
+        { key: 1, start: 0, stop: 14.2, value: <FaRegTired style={iconStyle} /> },
+        { key: 2, start: 14.3, stop: 28.5, value: <FaRegAngry style={iconStyle} /> },
+        { key: 3, start: 28.6, stop: 42.8, value: <FaRegFrown style={iconStyle} /> },
+        { key: 4, start: 42.9, stop: 57.1, value: <FaRegMeh style={iconStyle} /> },
+        { key: 5, start: 57.2, stop: 71.4, value: <FaRegSmile style={iconStyle} /> },
+        { key: 6, start: 71.5, stop: 85.7, value: <FaRegSmileBeam style={iconStyle} /> },
+        { key: 7, start: 85.8, stop: 100, value: <FaRegGrinSquint style={iconStyle} /> }
     ];
 
     return (
         <Container style={props.style}>
-            { faces.find(face => face.key === props.mood).value }
+            { ((props.perc && props.perc !=='NaN') || props.mood) && faces.find(face => {
+                if(props.perc) {
+                    return props.perc >= face.start && props.perc <= face.stop;
+                }
+                return face.key === props.mood;
+            }).value }
         </Container>
     );
 }
