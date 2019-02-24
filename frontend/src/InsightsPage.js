@@ -29,6 +29,10 @@ const StatsContainer = styled.div`
     margin: 10px;
     border-radius: 10px;
     background-color: #fff;
+
+    @media (max-width: 700px) {
+        flex-direction: column;
+    }
 `;
 
 const GraphContainer = styled.div`
@@ -58,6 +62,7 @@ const NumberContainer = styled.div`
     align-content: center;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 `;
 //#endregion
 
