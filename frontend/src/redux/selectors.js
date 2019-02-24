@@ -1,6 +1,25 @@
 import { createSelector } from 'reselect';
 
+export const getMoodSlice = store => store.mood;
 export const getMoodHistory = store => store.mood.moodHistory;
+
+export const getSaveStatus = createSelector(
+    [getMoodSlice],
+    (state) => {
+        return {
+            status: state.saveStatus
+        };
+    }
+)
+
+export const getMoodStatus = createSelector(
+    [getMoodSlice],
+    (state) => {
+        return {
+            status: state.moodStatus
+        };
+    }
+)
 
 export const getOrderedMoodHistory = createSelector(
     [getMoodHistory],
@@ -33,11 +52,13 @@ export const getMoodTotals = createSelector(
 );
 
 export const getMoodInsights = createSelector(
-    [getOrderedMoodHistory, getMoodTotals],
-    (history, totals) => {
+    [getOrderedMoodHistory, getMoodTotals, getMoodStatus],
+    (history, totals, status) => {
         return {
             totals: totals,
-            orderedHistory: history
+            orderedHistory: history,
+            status: status.status
         }
     }
 );
+
