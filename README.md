@@ -1,5 +1,5 @@
 # BACKEND (Express)
-##Setup
+## Setup
 Please execute `npm install` from within the backend directory.
 
 ## To start the backend
@@ -16,7 +16,7 @@ Start the backend via the following command instead of `npm start`:
 ---
 
 # FRONTEND (React)
-##Setup
+## Setup
 Please execute `npm install` from within the frontend directory.
 
 ## To start the frontend
@@ -30,3 +30,10 @@ Please execute `npm install` from within the frontend directory.
 ## To run code coverage
 1. Switch to the frontend directory
 2. Execute `npm test -- --coverage`
+
+---
+
+## Notes
+If using Jest in VS Code, please open the frontend directory as the workspace instead of the root directory.
+
+Otherwise, Jest will have to be manually launched via `View > Command Palette > Jest: Start Runner`
