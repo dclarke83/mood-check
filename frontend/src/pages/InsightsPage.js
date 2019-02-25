@@ -75,8 +75,7 @@ const Centralise = styled.div`
 `;
 //#endregion
 
-class InsightsPage extends Component {
-
+export class InsightsPage extends Component {
     componentDidMount() {
         this.props.dispatch(getMoods());
     }
