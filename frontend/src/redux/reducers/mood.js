@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 moodHistory: action.payload.moods,
-                moodStatus: 'success'
+                moodStatus: (action.payload.moods.length > 0) ? 'success' : 'empty'
             }
         }
         case GET_MOODS_ERROR: {

@@ -4,12 +4,12 @@ let moodEvents = require(filename);
 
 const getMoodEvents = () => { 
     return new Promise((resolve, reject) => {
-        if(moodEvents.length === 0) {
-            reject({
-                status: 202,
-                message: 'No mood events'
-            });
-        }
+        // if(moodEvents.length === 0) {
+        //     reject({
+        //         status: 202,
+        //         message: 'No mood events'
+        //     });
+        // }
 
         resolve(moodEvents);
     });

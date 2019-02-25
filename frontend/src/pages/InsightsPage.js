@@ -8,7 +8,7 @@ import MoodFace from '../ui/components/MoodFace';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Spinner from '../ui/components/Spinner';
-import { FaExclamationTriangle } from 'react-icons/fa';
+import { FaExclamationTriangle, FaInfoCircle } from 'react-icons/fa';
 
 //#region styled-elements
 const EntryList = styled.ol`
@@ -101,6 +101,13 @@ class InsightsPage extends Component {
                         <Centralise>
                             <FaExclamationTriangle style={{fontSize: '26vw', color: '#ff5252' }} />
                             <p>Unable to retrieve insights</p>
+                        </Centralise>
+                    }
+                    {
+                        this.props.status === 'empty' &&
+                        <Centralise>
+                            <FaInfoCircle style={{fontSize: '26vw', color: '#00a3cb' }} />
+                            <p>To enable Insights, please Check-In first</p>
                         </Centralise>
                     }
                     {
