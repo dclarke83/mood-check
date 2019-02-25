@@ -55,7 +55,7 @@ const FeelingsContainer = styled.div`
 `;
 //#endregion
 
-class CheckInPage extends Component {
+export class CheckInPage extends Component {
     state = {
         mood: 4,
         labels: {
