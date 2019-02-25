@@ -14,6 +14,13 @@ describe('RoundButton', () => {
     it('should render to static HTML', () => {
         expect(render(<RoundButton>Test</RoundButton>).text()).toEqual('Test');
     });
+
+    it('should execute the passed function upon clicking', () => {
+        const onButtonClick = jest.fn();
+        const wrapper = mount(<RoundButton handleClick={onButtonClick} />);
+        wrapper.find('button').simulate('click');
+        expect(onButtonClick.mock.calls.length).toBe(1);
+    });
     
     describe('status prop', () => {
         it('a check icon should show if status is "success"', () => {
