@@ -4,8 +4,8 @@ import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
 import './check-in-page.scss';
 import MoodFace from '../ui/components/MoodFace';
-import CheckButton from '../CheckButton';
-import RoundButton from '../RoundButton';
+import CheckButton from '../ui/components/CheckButton';
+import RoundButton from '../ui/components/RoundButton';
 import { connect } from 'react-redux';
 import { saveMood } from '../redux/actions';
 import { getSaveStatus } from '../redux/selectors';

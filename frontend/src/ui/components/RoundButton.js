@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { FaSpinner, FaCheck, FaTimesCircle } from 'react-icons/fa';
-import './font-awesome-animation.min.css';
 
 const StyledButton = styled.button`
     background-color: #ff8a66;
@@ -40,10 +39,23 @@ const InnerPos = styled.div`
     margin-top: -25px;
 `;
 
+const spinKeyframes = keyframes`
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+`;
+
+const AnimatedFaSpinner = styled(FaSpinner)`
+    animation: ${spinKeyframes} 1.5s linear infinite;
+`;
+
 const StatusIcon = (props) => {
     switch(props.status){
         case 'pending': {
-            return <FaSpinner className='faa-spin animated' />
+            return <AnimatedFaSpinner />
         }
         case 'success': {
             return <FaCheck />
