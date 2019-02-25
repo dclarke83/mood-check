@@ -7,7 +7,7 @@ import MoodEntry from '../ui/components/MoodEntry';
 import MoodFace from '../ui/components/MoodFace';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import Spinner from '../Spinner';
+import Spinner from '../ui/components/Spinner';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 //#region styled-elements
