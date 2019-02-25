@@ -81,20 +81,39 @@ describe('mood reducer', () => {
     });
 
     describe('GET_MOODS_SUCCESS', () => {
-        const action = {
-            type: types.GET_MOODS_SUCCESS,
-            payload: {
-                moods: [ { id: '123'}, { id: 'abc' }]
-            }
-        };
+        describe('a non-empty mood history result', () => {        
+            const action = {
+                type: types.GET_MOODS_SUCCESS,
+                payload: {
+                    moods: [ { id: '123'}, { id: 'abc' }]
+                }
+            };
 
-        it('should set moodHistory array length to 2', () => {   
-            expect(reducer(initialState, action).moodHistory.length).toBe(2);
+            it('should set moodHistory array length to 2', () => {   
+                expect(reducer(initialState, action).moodHistory.length).toBe(2);
+            });
+
+            it('should set moodStatus to "success"', () => {   
+                expect(reducer(initialState, action).moodStatus).toBe('success');
+            });
         });
 
-        it('should set moodStatus to "success"', () => {   
-            expect(reducer(initialState, action).moodStatus).toBe('success');
-        });
+        describe('an empty mood history result', () => {        
+            const action = {
+                type: types.GET_MOODS_SUCCESS,
+                payload: {
+                    moods: []
+                }
+            };
+
+            it('should set moodHistory array length to 0', () => {   
+                expect(reducer(initialState, action).moodHistory.length).toBe(0);
+            });
+
+            it('should set moodStatus to "empty"', () => {   
+                expect(reducer(initialState, action).moodStatus).toBe('empty');
+            });
+        });        
     });    
 
     describe('GET_MOODS_ERROR', () => {
