@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import API from '../api';
 import { showSnack } from 'react-redux-snackbar';
 import { 
@@ -37,14 +36,14 @@ export const saveMood = (mood) => {
         return API.post(moodRoute, mood)
             .then(json => {
                 dispatch(saveMoodSuccess(json.data.content));
-                dispatch(showSnack(uuid(), {
+                dispatch(showSnack('mood-saved', {
                     label: 'Check-In Saved',
                     timeout: 2500
                 }));
             })
             .catch((error) => {
                 dispatch(saveMoodError(error));
-                dispatch(showSnack(uuid(), {
+                dispatch(showSnack('save-error', {
                     label: (error.response) ? error.response.data.message : 'Unable to save - ' + error.message,
                     timeout: 7000,
                     button: { label: 'OK' }
@@ -81,7 +80,7 @@ export const getMoods = () => {
             })
             .catch((error) => {
                 dispatch(getMoodsError(error))
-                dispatch(showSnack(uuid(), {
+                dispatch(showSnack('moods-error', {
                     label: (error.response) ? error.response.data.message : 'Unable to retrieve insights - ' + error.message,
                     timeout: 7000,
                     button: { label: 'OK' }
