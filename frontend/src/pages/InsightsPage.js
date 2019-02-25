@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getMoods } from './redux/actions';
-import { getMoodInsights } from './redux/selectors';
-import MoodEntry from './MoodEntry';
-import MoodFace from './MoodFace';
+import { getMoods } from '../redux/actions';
+import { getMoodInsights } from '../redux/selectors';
+import MoodEntry from '../ui/components/MoodEntry';
+import MoodFace from '../ui/components/MoodFace';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import Spinner from './Spinner';
+import Spinner from '../Spinner';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 //#region styled-elements

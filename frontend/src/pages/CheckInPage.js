@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
-import './mood-slider.scss';
-import MoodFace from './MoodFace';
-import CheckButton from './CheckButton';
-import RoundButton from './RoundButton';
+import './check-in-page.scss';
+import MoodFace from '../ui/components/MoodFace';
+import CheckButton from '../CheckButton';
+import RoundButton from '../RoundButton';
 import { connect } from 'react-redux';
-import { saveMood } from './redux/actions';
-import { getSaveStatus } from './redux/selectors';
+import { saveMood } from '../redux/actions';
+import { getSaveStatus } from '../redux/selectors';
 
 //#region styled-components
 const Comment = styled.input`

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Snackbar } from 'react-redux-snackbar';
-import NavBar from './NavBar';
-import CheckInPage from './CheckInPage';
-import InsightsPage from './InsightsPage';
+import NavBar from './ui/components/NavBar';
+import CheckInPage from './pages/CheckInPage';
+import InsightsPage from './pages/InsightsPage';
 
 class App extends Component {
   render() {
