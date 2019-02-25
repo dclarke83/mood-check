@@ -8,7 +8,7 @@ describe('CheckButton', () => {
         shallow(<CheckButton />);
     });
 
-    it('should mount in a full DOM', function() {
+    it('should mount in a full DOM', () => {
         expect(mount(<CheckButton />).find('input[type="checkbox"]').length).toBe(1);
     });
 

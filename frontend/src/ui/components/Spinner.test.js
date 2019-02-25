@@ -7,7 +7,7 @@ describe('Spinner', () => {
         shallow(<Spinner />);
     });
 
-    it('should mount in a full DOM', function() {
+    it('should mount in a full DOM', () => {
         expect(mount(<Spinner />).find('div').length).toBe(5);
     });
 });

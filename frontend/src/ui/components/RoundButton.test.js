@@ -7,7 +7,7 @@ describe('RoundButton', () => {
         shallow(<RoundButton />);
     });
 
-    it('should mount in a full DOM', function() {
+    it('should mount in a full DOM', () => {
         expect(mount(<RoundButton />).find('button').length).toBe(1);
     });
 

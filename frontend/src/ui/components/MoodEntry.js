@@ -23,7 +23,9 @@ const Row = styled.div`
     justify-items: baseline;
 `;
 
-const ExpanderRow = styled(Row)`
+const ExpanderRow = styled(Row).attrs({
+    className: 'mc-expander'
+})`
     padding-top: 5px;
     flex-direction: column;
     display: ${props => props.expanded ? 'flex' : 'none' }; 

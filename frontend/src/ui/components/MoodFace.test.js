@@ -3,12 +3,12 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import MoodFace from './MoodFace';
 
-describe('CheckButton', () => {
+describe('MoodFace', () => {
     it('should render without throwing an error', () => {
         shallow(<MoodFace />);
     });
 
-    it('should mount in a full DOM', function() {
+    it('should mount in a full DOM', () => {
         expect(mount(<MoodFace mood={1} />).find('svg').length).toBe(1);
     });
 
