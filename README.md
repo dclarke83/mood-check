@@ -1,4 +1,7 @@
 # BACKEND (Express)
+##Setup
+Please execute `npm install` from within the backend directory.
+
 ## To start the backend
 
 1. Switch to the backend directory
@@ -13,7 +16,10 @@ Start the backend via the following command instead of `npm start`:
 ---
 
 # FRONTEND (React)
-## To start frontend
+##Setup
+Please execute `npm install` from within the frontend directory.
+
+## To start the frontend
 1. Switch to the frontend directory
 2. Execute `npm start`
 
